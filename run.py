@@ -28,7 +28,7 @@ cache = True
 if cache == True:
 	cache_file = 'runs/{}/{}/partial_workflow.map'.format(run, chunk)
 	print('CACHE FILE USED \n', cache_file, '\n')
-	wf_name = 'gwv4'
+	wf_name = 'gwv2'
 
 elif cache == False:
 	print('OG workflow')
@@ -39,6 +39,7 @@ print('CHECK workflow name \n', wf_name, '\n')
 configs = glob.glob("config/*.ini")
 configs.append("times/gps_times_{}_analysis_{}.ini".format(run, chunk))
 configs.append(data)
+configs.append("config/inj_configs/{}_{}.ini".format(run, chunk))
 
 if cache == True:
 	outdir = 'runs/{}/{}/{}'.format(run, chunk, wf_name)

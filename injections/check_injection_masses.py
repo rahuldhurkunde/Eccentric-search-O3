@@ -13,13 +13,13 @@ q = np.divide(mass1, mass2)
 bank = '/work/rahul.dhurkunde/searches/eccentric-bns-search/banks/spinecc/mtotal-10_ecc-0.28_spin-0.1/mtotal-10_ecc-0.28_spin-0.1.hdf'
 print("!!! Check the bank file !!! \n", bank)
 
-hf = h5py.File(bank)
-bank_m1 = hf['mass1'][:]
-bank_m2 = hf['mass2'][:]
-bank_mtotal = bank_m1 + bank_m2
-bank_q = np.divide(bank_m1, bank_m2)
-
-plt.scatter(bank_mtotal, bank_q, label = 'templates')
-plt.scatter(mtotal, q, label = 'injection')
+#hf = h5py.File(bank)
+#bank_m1 = hf['mass1'][:]
+#bank_m2 = hf['mass2'][:]
+#bank_mtotal = bank_m1 + bank_m2
+#bank_q = np.divide(bank_m1, bank_m2)
+#
+#plt.scatter(bank_m1, bank_m2, label = 'templates')
+plt.scatter(mass1, mass2, label = 'injection')
 plt.legend()
 plt.show()

@@ -14,5 +14,6 @@ else
 	echo "GPS end $end" 
 
 	pycbc_create_injections --config-file one-chunk.ini --output-file $1/$2.hdf --seed 123 --gps-start-time $start --gps-end-time $end --time-step 200 --time-window 100
-
+	
+	python add_masses_and_eccentricity.py $1/$2.hdf
 fi
