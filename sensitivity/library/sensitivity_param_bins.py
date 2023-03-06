@@ -27,6 +27,8 @@ parser.add_argument('--constraint-param', choices=['mtotal', 'mchirp', 'eccentri
                     help="Disentangle injections having same choosen param from the total population and compute sensitivity using only that sub-population.")
 parser.add_argument('--constraint-value', type = float,
                     help="Injections having the specified value for --constraint-param will be used for sensitivity calculations.")
+parser.add_argument('--constraint-value-tol', type = float,
+                    help="Put a tolerance around --constraint-value to collect the sub-population.")
 
 parser.add_argument('--param-range', nargs='+',
                     help="Required. Total range to bin the params, ex. 1.0  4.0")
@@ -140,9 +142,10 @@ for fi in args.injection_file:
             if args.constraint_param == 'mtotal':
                mtotal_found = conversions.mtotal_from_mass1_mass2(f['injections/mass1'][temp_foundi], f['injections/mass2'][temp_foundi])
                mtotal_missed = conversions.mtotal_from_mass1_mass2(f['injections/mass1'][temp_missedi], f['injections/mass2'][temp_missedi])
-               sub_pop_found_ind = numpy.where(mtotal_found == args.constraint_value)[0]
-               foundi = temp_foundi[numpy.where(mtotal_found == args.constraint_value)[0]]
-               missedi = temp_missedi[numpy.where(mtotal_missed == args.constraint_value)[0]]
+               sub_pop_found_ind = numpy.where(numpy.abs(mtotal_found - args.constraint_value) <= args.constraint_value_tol )[0]
+               
+               foundi = temp_foundi[numpy.where(numpy.abs(mtotal_found - args.constraint_value) <= args.constraint_value_tol)[0]]
+               missedi = temp_missedi[numpy.where(numpy.abs(mtotal_missed - args.constraint_value) <= args.constraint_value_tol)[0]]
                #print('Sub-population with %s injections out of %s' %(len(foundi)+len(missedi), len(temp_foundi)+len(temp_missedi)))
                print('Sub-population with %s injections out of %s' %(len(foundi), len(temp_foundi)))
                if len(foundi) == 0 or len(missedi) == 0:
@@ -152,9 +155,10 @@ for fi in args.injection_file:
             elif args.constraint_param == 'mchirp':
                mchirp_found = conversions.mchirp_from_mass1_mass2(f['injections/mass1'][temp_foundi], f['injections/mass2'][temp_foundi])
                mchirp_missed = conversions.mchirp_from_mass1_mass2(f['injections/mass1'][temp_missedi], f['injections/mass2'][temp_missedi])
-               sub_pop_found_ind = numpy.where(mchirp_found == args.constraint_value)[0]
-               foundi = temp_foundi[numpy.where(mchirp_found == args.constraint_value)[0]]
-               missedi = temp_missedi[numpy.where(mchirp_missed == args.constraint_value)[0]]
+               sub_pop_found_ind = numpy.where(numpy.abs(mchirp_found - args.constraint_value) <= args.constraint_value_tol)[0]
+               
+               foundi = temp_foundi[numpy.where(numpy.abs(mchirp_found - args.constraint_value) <= args.constraint_value_tol)[0]]
+               missedi = temp_missedi[numpy.where(numpy.abs(mchirp_missed - args.constraint_value) <= args.constraint_value_tol)[0]]
                if len(foundi) == 0 or len(missedi) == 0:
                    print('No sub-population found for %s = %s, Check the constraint-value' %(args.constraint_param, args.constraint_value))
                    sys.exit()
@@ -162,9 +166,10 @@ for fi in args.injection_file:
             elif args.constraint_param == 'eccentricity':
                ecc_found = f['injections/eccentricity'][temp_foundi]
                ecc_missed = f['injections/eccentricity'][temp_missedi]
-               sub_pop_found_ind = numpy.where(ecc_found == args.constraint_value)[0]
-               foundi = temp_foundi[numpy.where(ecc_found == args.constraint_value)[0]]
-               missedi = temp_missedi[numpy.where(ecc_missed == args.constraint_value)[0]]
+               sub_pop_found_ind = numpy.where(numpy.abs(ecc_found - args.constraint_value) <= args.constraint_value_tol)[0]
+               
+               foundi = temp_foundi[numpy.where(numpy.abs(ecc_found - args.constraint_value) <= args.constraint_value_tol)[0]]
+               missedi = temp_missedi[numpy.where(numpy.abs(ecc_missed - args.constraint_value) <= args.constraint_value_tol)[0]]
                if len(foundi) == 0 or len(missedi) == 0:
                    print('No sub-population found for %s = %s, Check the constraint-value' %(args.constraint_param, args.constraint_value))
                    sys.exit()
