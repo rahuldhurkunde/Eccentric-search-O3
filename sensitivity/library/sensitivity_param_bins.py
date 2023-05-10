@@ -30,6 +30,8 @@ parser.add_argument('--constraint-value', type = float,
 parser.add_argument('--constraint-value-tol', type = float,
                     help="Put a tolerance around --constraint-value to collect the sub-population.")
 
+parser.add_argument('--bins', nargs='+',
+                    help="Parameter bin boundaries, ex. 1.3 2.6 4.1")
 parser.add_argument('--param-range', nargs='+',
                     help="Required. Total range to bin the params, ex. 1.0  4.0")
 parser.add_argument('--nbins-param', type = int,
@@ -42,7 +44,7 @@ parser.add_argument('--exclusive-sig', action='store_true',
 parser.add_argument('--sig-bins', nargs='*',
                    help="Boundaries of x-axis significance bins. If not given"
                         ", hard-coded defaults will be used"),
-parser.add_argument('--dist-type', choices=['distance', 'volume', 'vt'],
+parser.add_argument('--dist-type', choices=['distance', 'volume', 'vt', 'rate'],
                     default='distance',
                     help="y-axis sensitivity measure. Default 'distance'")
 parser.add_argument('--log-dist', action='store_true',
@@ -85,8 +87,12 @@ parser.add_argument('--f-lower', default=20, type=float, help='Low frequency '
 
 args = parser.parse_args()
 
-param_bins = numpy.linspace(float(args.param_range[0]), float(args.param_range[1]), args.nbins_param)
-if len(args.param_range) < 2:
+if args.bins:
+	param_bins = args.bins
+else:
+	param_bins = numpy.linspace(float(args.param_range[0]), float(args.param_range[1]), args.nbins_param)
+
+if len(param_bins) < 2:
     raise RuntimeError("At least 2 injection bin boundaries are required!")
 
 if args.integration_method == 'mc' and (args.distance_param is None or \
@@ -135,7 +141,7 @@ for fi in args.injection_file:
     with h5py.File(fi, 'r') as f:
 
         # Get the found (at any FAR)/missed injection indices
-        if args.constraint_value and args.constraint_param:
+        if args.constraint_value or args.constraint_param:
             temp_foundi = f['found_after_vetoes/injection_index'][:]
             temp_missedi = f['missed/after_vetoes'][:]
             
@@ -146,8 +152,6 @@ for fi in args.injection_file:
                
                foundi = temp_foundi[numpy.where(numpy.abs(mtotal_found - args.constraint_value) <= args.constraint_value_tol)[0]]
                missedi = temp_missedi[numpy.where(numpy.abs(mtotal_missed - args.constraint_value) <= args.constraint_value_tol)[0]]
-               #print('Sub-population with %s injections out of %s' %(len(foundi)+len(missedi), len(temp_foundi)+len(temp_missedi)))
-               print('Sub-population with %s injections out of %s' %(len(foundi), len(temp_foundi)))
                if len(foundi) == 0 or len(missedi) == 0:
                    print('No sub-population found for %s = %s, Check the constraint-value' %(args.constraint_param, args.constraint_value))
                    sys.exit()            
@@ -170,6 +174,7 @@ for fi in args.injection_file:
                
                foundi = temp_foundi[numpy.where(numpy.abs(ecc_found - args.constraint_value) <= args.constraint_value_tol)[0]]
                missedi = temp_missedi[numpy.where(numpy.abs(ecc_missed - args.constraint_value) <= args.constraint_value_tol)[0]]
+               #print(fi, 'Found subpopulation', len(foundi))				
                if len(foundi) == 0 or len(missedi) == 0:
                    print('No sub-population found for %s = %s, Check the constraint-value' %(args.constraint_param, args.constraint_value))
                    sys.exit()
@@ -190,7 +195,7 @@ for fi in args.injection_file:
         # y-components not used but read them in for symmetry
         s1y, s2y = f['injections/spin1y'][:], f['injections/spin2y'][:]
         inc = f['injections/inclination'][:]
-        eccentricity = f['injections/eccentricity'][:]
+        #eccentricity = f['injections/eccentricity'][:]
 
         mchirp = pycbc.pnutils.mass1_mass2_to_mchirp_eta(m1, m2)[0]
         if args.bin_type == 'mchirp':
@@ -264,7 +269,7 @@ for fi in args.injection_file:
 
         print('Found injections ', len(found['dist']))
         # Time in years
-        if args.dist_type == 'vt':
+        if args.dist_type == 'vt' or args.dist_type == 'rate':
             t += f.attrs['foreground_time_exc'] / lal_YRJUL_SI
 
 # Parameter bin legend labels
@@ -378,6 +383,7 @@ for j in range(len(param_bins)-1):
                 missed_mchirp = numpy.append(missed['mchirp'][binm],
                                              found['mchirp'][binf][quiet])
 
+                print('Ezzz', len(f_dist), len(m_dist_full))
                 if args.integration_method == 'mc':
                     vol, vol_err = sensitivity.volume_montecarlo(f_dist,
                       m_dist_full, found_mchirp, missed_mchirp,
@@ -391,6 +397,7 @@ for j in range(len(param_bins)-1):
 
             vols.append(vol)
             vol_errors.append(vol_err)
+            logging.info('Vol_errors %5.2f' % ((vol-vol_err)/vol))
 
         vols = numpy.array(vols)
         vol_errors = numpy.array(vol_errors)
@@ -406,6 +413,10 @@ for j in range(len(param_bins)-1):
             pylab.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 
             reach, ehigh, elow = vols * t, vol_errors * t, vol_errors * t
+
+        elif args.dist_type == 'rate':
+            ylabel = "Rate (Yr^{-1} Gpc^{-3})"
+            reach, ehigh, elow = 2.303*10**9/(vols*t), 2.303*10**9/(t*vol_errors), 2.303*10**9/(t*vol_errors)
 
         label = labels[args.bin_type] % (left, right) if do_label else None
         pylab.plot(x_values, reach, label=label, c=c)
