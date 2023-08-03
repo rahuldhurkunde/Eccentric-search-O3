@@ -1,6 +1,8 @@
 # Eccentric search for Neutron star-black hole (NSBH) and binary neutron star (BNS) mergers within O3 advanced LIGO and advanced VIRGO data
 
-<img src="https://images.indianexpress.com/2021/06/NSBH-merger-graphic.png", width=500/>
+<img src="https://images.indianexpress.com/2021/06/NSBH-merger-graphic.png" width=700/>
+
+(Image credits: Soheb Mandhai)
 
 Current observations of gravitational wave events from compact binary mergers are unable to resolve the tension amongst various formation models proposed 
 in the literature, and thus, their formation and evolution mechanism remains elusive. 
