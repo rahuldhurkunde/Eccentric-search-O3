@@ -1,4 +1,4 @@
-#!/usr/env python
+#!/usr/bin/env python3
 import subprocess
 import sys
 import glob
@@ -25,7 +25,7 @@ elif run == 'test':
 
 cache = False 
 
-chunk_list = [22, 23, 24]
+chunk_list = ['1_6', '2_2', '2_8']
 
 for chunk in chunk_list:
 	print('Run ', run, 'Chunk', chunk)

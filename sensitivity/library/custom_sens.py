@@ -7,7 +7,7 @@ from lal import YRJUL_SI as lal_YRJUL_SI
 import numpy as np
 
 def get_missed_found_injections(inj_files, missed, found, xaxis):
-	t = 0.
+	t = []
 	print('Using sub-population', args.constraint_param, 'with value', args.constraint_value)
 	for fi in args.injection_file:
 		with h5py.File(fi, 'r') as f:
@@ -118,8 +118,7 @@ def get_missed_found_injections(inj_files, missed, found, xaxis):
 
 			print('Found injections ', len(found['dist']))
 			# Time in years
-			if args.dist_type == 'vt' or args.dist_type == 'rate':
-				t += f.attrs['foreground_time_exc'] / lal_YRJUL_SI
+			t.append(f.attrs['foreground_time_exc'] / lal_YRJUL_SI)
 
 	fvalues = [found['sig_exc']]
 	do_labels = [True]
@@ -224,6 +223,9 @@ labels = {
 ylabel = xlabel = ""
 
 missed, found, t, fvalues, x_values = get_missed_found_injections(args.injection_file, missed, found, args.xaxis)
+obs_time = np.sum(np.unique(t))
+
+print('Total observation time in years: ', obs_time)
 do_labels = [True]
 alphas = [.6]
 
@@ -320,7 +322,9 @@ for xval in x_values:
 		elif args.dist_type == 'rate':
 			ylabel = "Rate (Yr^{-1} Gpc^{-3})"
 			pylab.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-			reach, ehigh, elow = 2.303*10**9/(vols*t), 2.303*10**9/t/vol**2*vol_errors, 2.303*10**9/t/vol**2*vol_errors
+		
+			obs_time = np.sum(np.unique(t))
+			reach, ehigh, elow = 2.303*10**9/(vols*obs_time), 2.303*10**9/obs_time/vol**2*vol_errors, 2.303*10**9/obs_time/vol**2*vol_errors
 
 		#label = labels[args.bin_type] % (xval) if do_label else None
 		pylab.plot(xval, reach, label=args.constraint_value)
@@ -337,7 +341,7 @@ if args.hdf_out:
     outfile = h5py.File(args.hdf_out,'w')
     for key in plotdict.keys():
         outfile.create_dataset(key, data=plotdict[key])
-
+    outfile.attrs.create('obs_time', data=obs_time)
 
 ax = pylab.gca()
 

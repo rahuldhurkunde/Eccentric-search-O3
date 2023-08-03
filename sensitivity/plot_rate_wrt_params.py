@@ -14,10 +14,11 @@ def find_nearest(array, value):
     return  array[idx], idx
 
 # computing only for q=1 systems
+# and snr = 10
 def compute_inspiral_range(mchirp, PSD, snr):
 	m1 = conversions.mass1_from_mchirp_q(mchirp, np.ones(len(mchirp)))
 	m2 = conversions.mass2_from_mchirp_q(mchirp, np.ones(len(mchirp)))
-	
+
 	inspiral_dist = []
 	for k in range(len(m1)):
 		hp,hc = pycbc.waveform.waveform.get_fd_waveform(mass1=m1[k], mass2=m2[k], approximant='TaylorF2Ecc',
@@ -37,6 +38,7 @@ def compute_inspiral_range(mchirp, PSD, snr):
 	return inspiral_dist
 
 
+
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--data-file', nargs='+',
                     help="Required. HDF format data file or space "
@@ -45,18 +47,12 @@ parser.add_argument('--ifar', type = float, default = 100.0,
                     help="IFAR value to plot the sensitivity")
 parser.add_argument('--output', required=True,
                     help='Destination file for the plot')
-parser.add_argument('--inspiral-range', action='store_true',
-					help='True(default) to plot analytical inspiral range')
-parser.add_argument('--log-dist', action='store_true',
-                    help='Plot the sensitivity axis in log scale')
-
+parser.add_argument('--log-rate', action='store_true',
+                    help='Log scale for y-axis')
 
 args = parser.parse_args()
 color = iter(cm.rainbow(np.linspace(0, 1, len(args.data_file))))
-param_values = iter([1.21877079, 2.01903774, 2.93015605, 3.13926747])
-
-if args.inspiral_range:
-	param_values = iter([0.0, 0.05, 0.1, 0.2, 0.27, 0.29])
+param_values = iter([1.21877079,2.01903774,2.93015605,3.13926747])
 
 for datafile in args.data_file:
 	c = next(color)
@@ -88,36 +84,19 @@ for datafile in args.data_file:
 	pylab.fill_between(xvals, reach - elow, reach + ehigh, facecolor=c,
 					 edgecolor=c, alpha=0.6)
 
-if args.inspiral_range:
-	#Plot inspiral ranges
-	snr = 8.0
-	mchirp = np.linspace(min(xvals), max(xvals), 100)
-	PSD = psd.read.from_txt('calculated_psd.txt', int((2048*64)/2+1), 1.0/64, 20.0)
-	inspiral_dist = compute_inspiral_range(mchirp, PSD, snr)
-	pylab.plot(mchirp, inspiral_dist, '--', color='black', label='inspiral-range with SNR %s' %snr)
-	print('our-search', inspiral_dist[0], inspiral_dist[2])
-	
-	#PSD = psd.read.from_txt('aplus.txt', int((2048*64)/2+1), 1.0/64, 20.0)
-	#inspiral_dist = compute_inspiral_range(mchirp, PSD, snr)
-	#pylab.plot(mchirp, inspiral_dist, '--', color='black', label='inspiral-range with SNR %s' %snr)
-	#print('aplus', inspiral_dist[0], inspiral_dist[2])
-	
-	#PSD = psd.read.from_txt('Asharp_strain.txt', int((2048*64)/2+1), 1.0/64, 20.0)
-	#inspiral_dist = compute_inspiral_range(mchirp, PSD, snr)
-	#pylab.plot(mchirp, inspiral_dist, '--', color='black', label='inspiral-range with SNR %s' %snr)
-	#print('Asharp', inspiral_dist[0], inspiral_dist[2])
+#Plot inspiral ranges
+#snr = 8.0
+#mchirp = np.linspace(min(xvals), max(xvals), 100)
+#PSD = psd.read.from_txt('o3asd.txt', int((2048*64)/2+1), 1.0/64, 20.0)
+#
+#inspiral_dist = compute_inspiral_range(mchirp, PSD, snr)
+#pylab.plot(mchirp, inspiral_dist, '--', label='inspiral-range with SNR %s' %snr)
 
-	#PSD = psd.read.from_txt('ce2.txt', int((2048*64)/2+1), 1.0/64, 20.0)
-	#inspiral_dist = compute_inspiral_range(mchirp, PSD, snr)
-	#pylab.plot(mchirp, inspiral_dist, '--', color='black', label='inspiral-range with SNR %s' %snr)
-
-if args.log_dist:
-    pylab.yscale('log')
-
+if args.log_rate:
+	pylab.yscale('log')
 
 pylab.xlabel('Eccentricity (20 Hz)')
-#pylab.xlabel('Mchirp')
-pylab.ylabel('Sensitive distance (Mpc)')
+pylab.ylabel('Merger rate upper limit ($Gpc^{-3}Yr^{-1}$)')
 pylab.grid()
 pylab.legend()
 plt.title('For IFAR %s' %args.ifar)
