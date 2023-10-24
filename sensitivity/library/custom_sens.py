@@ -17,8 +17,8 @@ def get_missed_found_injections(inj_files, missed, found, xaxis):
 				temp_missedi = f['missed/after_vetoes'][:]
 
 				if args.constraint_param == 'mtotal':
-					mtotal_found = conversions.mtotal_from_mass1_mass2(f['injections/mass1'][temp_foundi], f['injections/mass2'][temp_foundi])
-					mtotal_missed = conversions.mtotal_from_mass1_mass2(f['injections/mass1'][temp_missedi], f['injections/mass2'][temp_missedi])
+					mtotal_found = conversions.mtotal_from_mass1_mass2(f['injections/mass1'][:][temp_foundi], f['injections/mass2'][:][temp_foundi])
+					mtotal_missed = conversions.mtotal_from_mass1_mass2(f['injections/mass1'][:][temp_missedi], f['injections/mass2'][:][temp_missedi])
 					sub_pop_found_ind = numpy.where(numpy.abs(mtotal_found - args.constraint_value) <= args.constraint_value_tol )[0]
 
 					foundi = temp_foundi[numpy.where(numpy.abs(mtotal_found - args.constraint_value) <= args.constraint_value_tol)[0]]
@@ -28,8 +28,8 @@ def get_missed_found_injections(inj_files, missed, found, xaxis):
 						sys.exit()
 
 				elif args.constraint_param == 'mchirp':
-					mchirp_found = conversions.mchirp_from_mass1_mass2(f['injections/mass1'][temp_foundi], f['injections/mass2'][temp_foundi])
-					mchirp_missed = conversions.mchirp_from_mass1_mass2(f['injections/mass1'][temp_missedi], f['injections/mass2'][temp_missedi])
+					mchirp_found = conversions.mchirp_from_mass1_mass2(f['injections/mass1'][:][temp_foundi], f['injections/mass2'][:][temp_foundi])
+					mchirp_missed = conversions.mchirp_from_mass1_mass2(f['injections/mass1'][:][temp_missedi], f['injections/mass2'][:][temp_missedi])
 					sub_pop_found_ind = numpy.where(numpy.abs(mchirp_found - args.constraint_value) <= args.constraint_value_tol)[0]
 
 					foundi = temp_foundi[numpy.where(numpy.abs(mchirp_found - args.constraint_value) <= args.constraint_value_tol)[0]]
@@ -124,7 +124,7 @@ def get_missed_found_injections(inj_files, missed, found, xaxis):
 	do_labels = [True]
 	alphas = [.6]
 	x_values = np.unique(found['param'])
-
+	print('Total found:', len(found['param']), 'missed: ', len(missed['param']))
 	return missed, found, t, fvalues, x_values
 
 
@@ -272,6 +272,7 @@ for xval in x_values:
 
 			# Distances of inj found above threshol, td
 			f_dist = found['dist'][binf][loud]
+			print('fvalues sum', sum(sig_val))
 			# Distances of inj found below threshold
 			fm_dist = found['dist'][binf][quiet]
 
@@ -290,6 +291,7 @@ for xval in x_values:
 								 found['mchirp'][binf][quiet])
 
 				if args.integration_method == 'mc':
+					print('Lengths \t: ', len(f_dist), len(m_dist_full), len(found_mchirp), len(missed_mchirp))
 					vol, vol_err = sensitivity.volume_montecarlo(f_dist,
 										m_dist_full, found_mchirp, missed_mchirp,
 										args.distance_param, args.distribution,

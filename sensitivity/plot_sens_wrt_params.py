@@ -7,6 +7,9 @@ from pycbc import waveform, psd, filter, conversions, detector
 import pycbc
 import argparse
 from matplotlib.pyplot import cm
+#rc('font', family='serif', weight = 'bold')
+from matplotlib import rc
+rc('text', usetex=True)
 
 def find_nearest(array, value):
     array = np.asarray(array)
@@ -52,7 +55,9 @@ parser.add_argument('--log-dist', action='store_true',
 
 
 args = parser.parse_args()
-color = iter(cm.rainbow(np.linspace(0, 1, len(args.data_file))))
+#color = iter(cm.rainbow(np.linspace(0, 1, len(args.data_file))))
+color = iter(cm.GnBu(np.linspace(0.3,0.9,len(args.data_file))))
+
 param_values = iter([1.21877079, 2.01903774, 2.93015605, 3.13926747])
 
 if args.inspiral_range:
@@ -83,7 +88,8 @@ for datafile in args.data_file:
 	reach = np.array(reach)
 	elow = np.array(elow)
 	ehigh = np.array(ehigh)
-	pylab.plot(xvals, reach, c=c, label='Mchirp = %s' %round(next(param_values),2))
+	label = r'$\mathcal{M}_c$ = ' + '{}'.format(round(next(param_values),2))
+	pylab.plot(xvals, reach, c=c, label=label)
 	pylab.plot(xvals, reach, alpha=0.6, c='black')
 	pylab.fill_between(xvals, reach - elow, reach + ehigh, facecolor=c,
 					 edgecolor=c, alpha=0.6)
@@ -115,11 +121,11 @@ if args.log_dist:
     pylab.yscale('log')
 
 
-pylab.xlabel('Eccentricity (20 Hz)')
+pylab.xlabel('$e_{10}$', fontsize=18)
 #pylab.xlabel('Mchirp')
-pylab.ylabel('Sensitive distance (Mpc)')
+pylab.ylabel('Sensitive distance (Mpc)', fontsize=14)
 pylab.grid()
 pylab.legend()
-plt.title('For IFAR %s' %args.ifar)
+#plt.title('For IFAR %s' %args.ifar)
 plt.savefig(args.output, dpi=600)
 pylab.show()
