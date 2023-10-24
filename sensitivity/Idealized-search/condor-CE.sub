@@ -1,0 +1,21 @@
+accounting_group    = cbc.imp.post-processing
+Universe        = vanilla
+Executable      = /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/3g_efficiency 
+
+#input-file
+transfer_input_files = /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/belzynscki/CE.hdf
+input = /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/belzynscki/CE.hdf
+
+#output-file
+transfer_output_files = /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/belzynscki/CE/$(Process)-CE.hdf
+output = /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/belzynscki/CE/$(Process)-CE.hdf
+
+Arguments       = --split-ind $(Process) --inj_file /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/belzynscki/CE.hdf --psd_list /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/psds/cosmic_explorer_strain.txt /work/rahul.dhurkunde/searches/eccentric-bns-search/search/sensitivity/ce_injs/psds/cosmic_explorer_20km_strain.txt  --delta_f 0.125 --f_low 5.2 --output $(Process)-CE.hdf   
+
+request_memory  = 1024 
+output          = errorlog/$(Process).out
+error           = errorlog/$(Process).err
+log 			= CE.log
+getenv          = true
+
+queue 1000
