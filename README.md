@@ -4,14 +4,9 @@
 
 (Image credits: Soheb Mandhai)
 
-Current observations of gravitational wave events from compact binary mergers are unable to resolve the tension amongst various formation models proposed 
-in the literature, and thus, their formation and evolution mechanism remains elusive. 
-The detection of an eccentric binary system could be vital in constraining uncertainties in these models.
-In this paper, we present our results from the first-ever search for aligned spin eccentric neutron star-black hole (NSBH)
-and the most sensitive search for aligned-spin eccentric binary neutron star (BNS) systems using data from the third observing run of the advanced LIGO and advanced VIRGO detectors.
-No new statistically significant candidate is found, but as a result, we place the most stringent upper limits on the merger rates at the $90\%$ confidence level. 
-Furthermore, we also estimate upper limits for networks of future second or third-generation observatories and conservatively predict that under null detection, 
-detector networks with $X (Y)$ would require an observation time of $Z (T)$ days to constrain all plausible models of eccentric BNS or NSBH models.<br>
+The possible formation histories of neutron star binaries remain unresolved by current gravitational-wave catalogs. The detection of an eccentric binary system could be vital in constraining compact binary formation models. We present the first search for aligned spin eccentric neutron star-black hole binaries (NSBH) and the most sensitive search for aligned-spin eccentric binary neutron star (BNS) systems using data from the third observing run of the advanced LIGO and advanced Virgo detectors. No new statistically significant candidates are found; we constrain the local merger rate to be less than 150 $\text{Gpc}^{-3}\text{Yr}^{-1}$ for binary neutron stars in the field, and, 50, 100, and 70 $\text{Gpc}^{-3}\text{Yr}^{-1}$ for neutron star-black hole binaries in globular clusters, hierarchical triples and nuclear clusters, respectively, at the 90$\%$ confidence level if we assume that no sources have been observed from these populations. We predict the capabilities of upcoming and next-generation observatory networks; we investigate the ability of three LIGO ($\text{A}^{\#}$) detectors and Cosmic Explorer CE (20km) + CE (40km) to use eccentric binary observations for determining the formation history of neutron star binaries. We find that 2 -- 100 years of observation with three $\text{A}^{\#}$ observatories are required before we observe clearly eccentric NSBH binaries; this reduces to only 10 days -- 1 year with the CE detector network. CE will 
+observe tens to hundreds of measurably eccentric binaries from
+each of the formation models we consider.
 
 A preprint version of the paper is available on arXiv. This release contains the following:
 * Configuration files of the search, template bank and the injections used for the analysis.
