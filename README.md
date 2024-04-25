@@ -15,9 +15,21 @@ observe tens to hundreds of measurably eccentric binaries from
 each of the formation models we consider.
 
 A preprint version of the paper is available on arXiv. This release contains the following:
-* Configuration files of the search, template bank and the injections used for the analysis.
-* The search sensitivity as a function of mchirp and eccentricity. 
-* Jupyter-lab notebooks to obtain the 90 % upper limits using eccentric and mchirp distributions for a given model
+* Search
+    * Configuration files for the search, template bank, and injections used for the analysis.
+* Search results
+    * List of top candidates 
+    * The search sensitivity as a function of mchirp and eccentricity (HDF5 files).
+* Constraints 
+  * Population synthesis data -- Mchirp and eccentricity samples.
+  * Noise ASDs used to compute the optimal SNRs for the idealized searches.
+  * Jupyter-lab notebooks to obtain the 90 % upper limits on the local merger rate.
+* Measurability analysis
+  * Scripts to compute the simplified Bayesian inference.
+  * Dictionary of measurable binary sources for given SNRs (keys). 
+
+
+** The simulated data for the idealized searches is not provided due to the file size limit on GITHUB. This can be made available upon reasonable requests    
 
 ## License and Citation
 
