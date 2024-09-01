@@ -36,3 +36,4 @@ Below is a brief description for each sub-directory here:
         * NSBH in hierarchical triples – Alessandro Alberto Trani, Sara Rastello, Ugo N. Di Carlo, Filippo Santoliquido, Ataru Tanikawa, and Michela Mapelli, Mon. Not. Roy. Astron. Soc. 511, 1362–1372 (2022).
         * NSBH in nuclear clusters – Giacomo Fragione, Evgeni Grishin, Nathan W. C. Leigh, Hagai. B. Perets, and Rosalba Perna, Mon. Not. Roy. Astron. Soc. 488, 47–63 (2019).
 * _psds_ – contains the representative O3 noise curve and the anticipated noise curve for the upcoming and future observatories used in this analysis.
+* _idealized-search_ - contains the python script used to compute the number of injections that are detectable for a given detector network from a specific astrophysical population. 
