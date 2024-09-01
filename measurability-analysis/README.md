@@ -5,8 +5,8 @@
 
 
 
-* <span style="text-decoration:underline;">dynesty-fisher.py </span>– Uses dynesty to sample over the $\mathcal{M}__c$, $q$ and $e_$ parameter space.
-* <span style="text-decoration:underline;">fixed-q-fisher.py</span> – Similar to the above script, but fixes $q$ while sampling.
+* <span style="text-decoration:underline;">dynesty-fisher.py </span>– Uses dynesty to sample over the mchirp, q and e parameter space.
+* <span style="text-decoration:underline;">fixed-q-fisher.py</span> – Similar to the above script, but fixes q while sampling.
 
 
 ## Results
