@@ -29,7 +29,261 @@ A preprint version of the paper is available on arXiv. This release contains the
   * Dictionary of measurable binary sources for given SNRs (keys). 
 
 
-** The simulated data for the idealized searches is not provided due to the file size limit on GITHUB. This can be made available upon reasonable requests    
+** The simulated data for the idealized searches is not provided due to the file size limit on GITHUB. This can be made available upon reasonable requests.    
+
+
+# Constraints on the local merger rate 
+
+
+## Observational constraints for O3
+
+
+<table>
+  <tr>
+   <td>Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>149.02243058810643
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>53.36526395563427
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>97.976810617951
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>70.44463776334753
+   </td>
+  </tr>
+</table>
+
+
+
+## Idealized constraints for various detector networks
+
+We have estimated constraints for an idealized search that covers the entire parameter space of the astrophysical model, and captures the signal SNR perfectly.  We provide three different types of constraints on each population:
+
+
+
+* Full population
+* Eccentric systems above a fixed eccentricity >= 0.01
+* Measurable eccentric systems
+
+
+### <span style="text-decoration:underline;">Full population constraints </span>
+
+
+
+* Three Asharp detectors
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>0.48555766392578537
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>0.10645969508981815
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.0778671896131999
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.10731093611667676
+   </td>
+  </tr>
+</table>
+
+
+
+
+* CE (40km baseline) + CE(20km baseline)
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>0.0021919213943572277
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>0.0011257530053556922
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.0010080234416283082
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.001082967826882465
+   </td>
+  </tr>
+</table>
+
+
+
+### <span style="text-decoration:underline;">Fixed ecc >= 0.01 constraints</span>
+
+
+
+* Three Asharp detectors
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>677.3529411764706
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>3.330922765403529
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.1157658744520851
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.12335693701993637
+   </td>
+  </tr>
+</table>
+
+
+
+
+* CE (40km baseline) + CE(20km baseline)
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>2.6722573839662442,
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>0.034350762054564186
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.0014993702562062906
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.0012444783733012645
+   </td>
+  </tr>
+</table>
+
+
+
+### <span style="text-decoration:underline;">Measurable eccentric systems</span>
+
+
+
+* Three Asharp detectors
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>1279.0
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td> 8.53
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.7375
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.2632
+   </td>
+  </tr>
+</table>
+
+
+
+
+* CE (40km baseline) + CE(20km baseline)
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>1.712
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>0.06979
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.009821
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.004279
+   </td>
+  </tr>
+</table>
+
+
 
 ## License and Citation
 
