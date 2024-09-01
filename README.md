@@ -34,6 +34,37 @@ A preprint version of the paper is available on arXiv. This release contains the
 
 # Constraints on the local merger rate 
 
+## Modeled predicted rates
+
+
+<table>
+  <tr>
+   <td>Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>[8.0, 50.0]
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td> <=0.1
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>[0.04, 0.34]
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>[0.06. 0.1]
+   </td>
+  </tr>
+</table>
+
+
 
 ## Observational constraints for O3
 
