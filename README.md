@@ -111,6 +111,35 @@ We have estimated constraints for an idealized search that covers the entire par
 
 ### <span style="text-decoration:underline;">Full population constraints </span>
 
+* Three A+ detectors
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>3.8967851099830795
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>0.8313479171178976
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.5604497225737369
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.7834932299108661
+   </td>
+  </tr>
+</table>
 
 
 * Three Asharp detectors
@@ -144,8 +173,6 @@ Isolated binary (Belczynski et al. (2018a))
 </table>
 
 
-
-
 * CE (40km baseline) + CE(20km baseline)
 
 <table>
@@ -176,6 +203,39 @@ Isolated binary (Belczynski et al. (2018a))
   </tr>
 </table>
 
+* ET
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>0.010134497215643601
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td>0.00249218885268609
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>0.001648579773221853
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>0.0019435434126820943
+   </td>
+  </tr>
+</table>
+
+
+### <span style="text-decoration:underline;">Fixed ecc >= 0.01 constraints</span>
+
 * Three A+ detectors
 
 <table>
@@ -183,32 +243,29 @@ Isolated binary (Belczynski et al. (2018a))
    <td>
 Isolated binary (Belczynski et al. (2018a))
    </td>
-   <td>3.8967851099830795
+   <td>5757.5
    </td>
   </tr>
   <tr>
    <td>Globular cluster (Arca Sedda (2020b))
    </td>
-   <td>0.8313479171178976
+   <td>26.77906976744186
    </td>
   </tr>
   <tr>
    <td>Triples (Trani et al. (2021))
    </td>
-   <td>0.5604497225737369
+   <td>0.8303288145370638
    </td>
   </tr>
   <tr>
    <td>Nuclear cluster (Fragione et al. (2019))
    </td>
-   <td>0.7834932299108661
+   <td>0.8947859196518766
    </td>
   </tr>
 </table>
 
-
-
-### <span style="text-decoration:underline;">Fixed ecc >= 0.01 constraints</span>
 
 
 
@@ -252,7 +309,7 @@ Isolated binary (Belczynski et al. (2018a))
    <td>
 Isolated binary (Belczynski et al. (2018a))
    </td>
-   <td>2.6722573839662442,
+   <td>2.6722573839662442
    </td>
   </tr>
   <tr>
@@ -275,32 +332,33 @@ Isolated binary (Belczynski et al. (2018a))
   </tr>
 </table>
 
-* Three A+ detectors
+
+* ET
 
 <table>
   <tr>
    <td>
 Isolated binary (Belczynski et al. (2018a))
    </td>
-   <td>5757.5
+   <td>12.179326923076921
    </td>
   </tr>
   <tr>
    <td>Globular cluster (Arca Sedda (2020b))
    </td>
-   <td>26.77906976744186
+   <td>0.07535994764397905
    </td>
   </tr>
   <tr>
    <td>Triples (Trani et al. (2021))
    </td>
-   <td>0.8303288145370638
+   <td>0.0024534832818740725
    </td>
   </tr>
   <tr>
    <td>Nuclear cluster (Fragione et al. (2019))
    </td>
-   <td>0.8947859196518766
+   <td>0.002231164612793901
    </td>
   </tr>
 </table>
@@ -310,6 +368,35 @@ Isolated binary (Belczynski et al. (2018a))
 
 ### <span style="text-decoration:underline;">Measurable eccentric systems</span>
 
+* Three A+ detectors
+
+<table>
+  <tr>
+   <td>
+Isolated binary (Belczynski et al. (2018a))
+   </td>
+   <td>11520.0
+   </td>
+  </tr>
+  <tr>
+   <td>Globular cluster (Arca Sedda (2020b))
+   </td>
+   <td> 62.92
+   </td>
+  </tr>
+  <tr>
+   <td>Triples (Trani et al. (2021))
+   </td>
+   <td>5.388
+   </td>
+  </tr>
+  <tr>
+   <td>Nuclear cluster (Fragione et al. (2019))
+   </td>
+   <td>1.922
+   </td>
+  </tr>
+</table>
 
 
 * Three Asharp detectors
@@ -375,36 +462,36 @@ Isolated binary (Belczynski et al. (2018a))
   </tr>
 </table>
 
-
-* Three A+ detectors
+* ET
 
 <table>
   <tr>
    <td>
 Isolated binary (Belczynski et al. (2018a))
    </td>
-   <td>11520.0
+   <td>11.73
    </td>
   </tr>
   <tr>
    <td>Globular cluster (Arca Sedda (2020b))
    </td>
-   <td> 62.92
+   <td>0.08415
    </td>
   </tr>
   <tr>
    <td>Triples (Trani et al. (2021))
    </td>
-   <td>5.388
+   <td>0.003113
    </td>
   </tr>
   <tr>
    <td>Nuclear cluster (Fragione et al. (2019))
    </td>
-   <td>1.922
+   <td>0.002463
    </td>
   </tr>
 </table>
+
 
 
 ## License and Citation
