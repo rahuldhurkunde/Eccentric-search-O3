@@ -13,8 +13,8 @@ def compute_ecc_maximized_match(hpe, PSD, m1, m2, s1z, s2z, ecc):
 		hp, hc = waveform.get_fd_waveform(approximant='TaylorF2Ecc',
 									mass1=m1,
 									mass2=m2,
-									spin1z=0.05,
-									spin2z=-0.05,
+									spin1z=s1z,
+									spin2z=s2z,
 									delta_f = hpe.delta_f,
 									eccentricity = temp_ecc,
 									f_lower = 10.0,
@@ -27,22 +27,30 @@ def compute_ecc_maximized_match(hpe, PSD, m1, m2, s1z, s2z, ecc):
 	return temp_matches[max_match_ind], temp_ecc_list[max_match_ind]  
 
 
-def sample_m1_m2_uniformly(nsamples):
+def sample_m1_m2_s1z_s2z_uniformly(nsamples):
 	m1_samples = []
 	m2_samples = []
+    s1z_samples = []
+    s2z_samples = []
 
-	while len(m1_samples) < nsamples:
-		# Sample m1 and m2 from a uniform distribution between 1 and 9
+    for k in range(nsamples):
+		# Sample m0 and m2 from a uniform distribution between 1 and 9
 		m1 = np.random.uniform(1.5, 9)
 		m2 = np.random.uniform(1.5, 9)
-		
+
+        s1z = np.random.uniform(-0.05, 0.05)
+        s2z = np.random.uniform(-0.05, 0.05)
+
 		# Check if the pair satisfies the constraints
 		if m1 >= m2 and m1 + m2 <= 10.0:
 			m1_samples.append(m1)
 			m2_samples.append(m2)
-	return m1_samples, m2_samples
 
-m1_list, m2_list = sample_m1_m2_uniformly(30)
+        s1z_samples.append(s1z)
+        s2z_samples.append(s2z)
+	return m1_samples, m2_samples, s1z_samples, s2z_samples
+
+m1_list, m2_list, s1z_list, s2z_list = sample_m1_m2_s1z_s2z_uniformly(30)
 
 ecc_list = np.linspace(0.0, 0.28, 10)
 
@@ -52,6 +60,8 @@ with open('data.txt', 'w') as file:
 	for k in range(len(m1_list)):
 		m1 = m1_list[k]
 		m2 = m2_list[k]
+        s1z = s1z_list[k]
+        s2z = s2z_list[k]
 		
 		for ecc in ecc_list:
 			print('Computing for ', m1, m2, ecc)
@@ -59,8 +69,8 @@ with open('data.txt', 'w') as file:
 			hpe, hce = waveform.get_td_waveform(approximant='teobresums',
 										mass1=m1,
 										mass2=m2,
-										spin1z=0.05,
-										spin2z=-0.05,
+										spin1z=s1z,
+										spin2z=s2z,
 										delta_t = 1.0/2048,
 										eccentricity = ecc,
 										f_lower = 10.0,
@@ -70,7 +80,7 @@ with open('data.txt', 'w') as file:
 			#PSD = psd.read.from_txt('o3psd.txt',int(len(hpe)/2+1), hpe.delta_f, low_freq_cutoff=20, is_asd_file=False)
 			PSD = psd.read.from_txt('Asharp_strain.txt',int(len(hpe)/2+1), hpe.delta_f, low_freq_cutoff=10, is_asd_file=True)
 
-			match, best_ecc_val = compute_ecc_maximized_match(hpe, PSD, m1, m2, 0.0, 0.0, ecc)
+			match, best_ecc_val = compute_ecc_maximized_match(hpe, PSD, m1, m2, s1z, s2z, ecc)
 			
 			matches.append(match)
 			
@@ -79,4 +89,3 @@ with open('data.txt', 'w') as file:
 			count += 1
 			row = f"{m1} {m2} {ecc} {match} {best_ecc_val} \n"
 			file.write(row)
-
