@@ -1,3 +1,9 @@
+## The top candidates ranked in decreasing order of IFAR [Yr] values.
+## Typical thresholds used in production searches has IFAR > 1.
+## However our analysis produces lots of noise triggers due to a denser template bank.
+## Thus a trigger from an eccentric template to be deemed significant should have atleast IFAR > 100. 
+
+
 GPS time        IFAR  m_1    m_2    e_{10}  s_{1z}  s_{2z}
                 [Yr]  [Msun] [Msun]
 
