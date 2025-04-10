@@ -14,6 +14,30 @@ The possible formation histories of neutron star binaries remain unresolved by c
 observe tens to hundreds of measurably eccentric binaries from
 each of the formation models we consider.
 
+<pre>
+```
+Eccentric-search-O3/
+├── configs/                                   # Configuration files for the analysis
+    ├── data/                                  # Config files specific to LIGO observing run data
+├── injections/                                # Files used to generate injections for the search
+├── Jupyter-notebooks/                         # Notebooks for plotting upper limits (observational and idealized)
+├── measurability-analysis/                    # Files to investigate measurable eccentric systems
+│   ├── Full-simplified-PE-comparision-plots/  # Comparision corner plots for the different PE runs
+│   ├── inferenc-configs/                      # Configs for the PE analysis
+│   ├── results/                               # Measurable eccentric systems as a function of mchirp and eccentricity
+├── psds/                                      # Contains various PSDs used in the study
+├── sensitivity/                               # Directory containing scripts and results used to obtain the observational constraints of our search
+│   ├── idealized-search/                      # Script for computing detectability of sources
+│   ├── injections-results/                    # Found and missed injections results from our search
+│   ├── library/                               # Custom PyCBC scripts to get VT and merger rate for our injection set.
+│   ├── pop-models/                            # Mchirp and eccentricity distributions for astrophysical models used.
+│   └── precession-bais/                       # Files to compute bias in merger rate due to neglecting precession.
+├── README.md                # Project documentation
+└── LICENSE                  # License information
+```
+</pre>
+
+
 A preprint version of the paper is available on arXiv. This release contains the following:
 * Search
     * Configuration files for the search, template bank, and injections used for the analysis.
